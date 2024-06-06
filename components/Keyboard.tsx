@@ -19,7 +19,7 @@ export default function Keyboard({
       {layout.map((row, i) => (
         <KeyRow key={i}>
           {row.map((key, j) => (
-            <KeyComponent
+            <Key
               {...key}
               key={key.p_key + j}
               pressed={
@@ -39,7 +39,7 @@ function KeyRow({ children }: { children?: React.ReactNode }) {
   return <div className="flex h-12 gap-1">{children}</div>;
 }
 
-function KeyComponent({
+function Key({
   p_key: key,
   p_key2: key2,
   label,
