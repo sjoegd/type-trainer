@@ -1,6 +1,6 @@
 'use client';
 
-import Keyboard from '@/components/Keyboard';
+import Keyboard from '@/components/keyboard';
 import { useState } from 'react';
 
 export default function Home() {
