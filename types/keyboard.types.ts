@@ -1,4 +1,4 @@
-export type KeyBoardLayout = KeyProps[][];
+export type KeyboardLayout = KeyProps[][];
 
 export interface KeyProps {
   p_key: string;

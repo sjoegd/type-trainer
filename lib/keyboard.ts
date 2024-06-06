@@ -1,6 +1,6 @@
-import { KeyBoardLayout, KeySize } from '@/types/keyboard.types';
+import { KeyboardLayout, KeySize } from '@/types/keyboard.types';
 
-export const createKeyboardLayout = (): KeyBoardLayout => {
+export const createKeyboardLayout = (): KeyboardLayout => {
   return [
     [
       { p_key: '`', p_key2: '~' },
@@ -82,7 +82,7 @@ export const createKeyboardLayout = (): KeyBoardLayout => {
   ];
 };
 
-export const getKeyboardKeys = (layout: KeyBoardLayout) => {
+export const getKeyboardKeys = (layout: KeyboardLayout) => {
   return layout
     .flat()
     .map((key) => key.p_key2 ? [key.p_key, key.p_key2] : [key.p_key])

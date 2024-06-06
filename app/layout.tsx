@@ -1,7 +1,7 @@
 import '@/styles/globals.css';
 
 import { inter } from '@/lib/fonts';
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/cn';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
