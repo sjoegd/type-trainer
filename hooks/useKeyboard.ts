@@ -13,6 +13,11 @@ export const useKeyboard = (
   const [pressed, setPressed] = useState(getKeyboardKeyMap(keys));
 
   useEffect(() => {
+
+    const onBlur = () => {
+      setPressed(getKeyboardKeyMap(keys));
+    }
+
     const onKeyPress = (e: KeyboardEvent) => {
       if (!(keys.includes(e.key) || keys.includes(e.key.toLowerCase()))) {
         return;
@@ -43,11 +48,13 @@ export const useKeyboard = (
       setPressed((prev) => ({ ...prev, [key]: false }));
     };
 
+    window.addEventListener('blur', onBlur);
     window.addEventListener('keypress', onKeyPress);
     window.addEventListener('keydown', onKeyDown);
     window.addEventListener('keyup', onKeyUp);
 
     return () => {
+      window.removeEventListener('blur', onBlur);
       window.removeEventListener('keypress', onKeyPress);
       window.removeEventListener('keydown', onKeyDown);
       window.removeEventListener('keyup', onKeyUp);

@@ -1,16 +1,16 @@
 'use client';
 
 import Keyboard from '@/components/keyboard';
-import Tracker from '@/components/text-tracker';
+import TextTracker from '@/components/text-tracker';
+import { Button } from '@/components/ui/button';
 import { useKeybinds } from '@/hooks/useKeybinds';
-import { createUseTextPractice } from '@/hooks/usePracticeText';
-import { useEffect } from 'react';
+import { createUseTypePractice } from '@/hooks/useTypePractice';
+import { ChevronsRight } from 'lucide-react';
 
-const useTextPractice = createUseTextPractice();
+const useTypePractice = createUseTypePractice();
 
 export default function Home() {
-  const { tracker, wpm, onPress, restart } =
-    useTextPractice();
+  const { tracker, wpm, onPress, restart } = useTypePractice();
 
   useKeybinds({
     keybinds: [
@@ -18,15 +18,28 @@ export default function Home() {
         key: 'Escape',
         action: restart,
       },
+      {
+        key: 'ArrowRight',
+        action: () => restart(true)
+      }
     ],
   });
 
   return (
-    <main className="flex h-full p-4 px-16">
-      <div className="m-auto max-w-5xl space-y-8">
-        <div>WPM: {wpm}</div>
-        <Tracker {...tracker} />
-        <div className="px-20">
+    <main className="flex h-full p-8">
+      <div className="m-auto min-w-[768px] max-w-5xl space-y-16">
+        <div className="space-y-12">
+          <div className="flex w-full items-center  text-lg">
+            <p className="text-lg">WPM: {wpm}</p>
+            <div className="ml-auto">
+              <Button variant="ghost" className='px-1' onClick={() => restart(true)}>
+                <ChevronsRight className="size-8" />
+              </Button>
+            </div>
+          </div>
+          <TextTracker {...tracker} />
+        </div>
+        <div className="px-8">
           <Keyboard
             onPress={onPress}
             preventDefaultKeys={['tab', 'enter', 'alt']}

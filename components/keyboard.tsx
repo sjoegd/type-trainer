@@ -18,8 +18,8 @@ export default function Keyboard({
   return (
     <AspectRatio ratio={3 / 1}>
       <div
-        className="grid size-full grid-rows-5 rounded-md border text-base capitalize"
-        style={{ containerType: 'inline-size', padding: '1cqw', gap: '0.5cqw' }}
+        className="grid size-full select-none grid-rows-5 rounded-md border text-base capitalize"
+        style={{ containerType: 'inline-size', padding: '1cqw', gap: '0.4cqw' }}
       >
         {layout.map((row, i) => (
           <KeyRow key={i}>
@@ -41,7 +41,7 @@ export default function Keyboard({
 
 function KeyRow({ children }: { children?: React.ReactNode }) {
   return (
-    <div className="row-span-1 grid grid-cols-60" style={{ gap: '0.5cqw' }}>
+    <div className="row-span-1 grid grid-cols-60" style={{ gap: '0.8cqw' }}>
       {children}
     </div>
   );
@@ -57,7 +57,7 @@ function Key({
   return (
     <div
       className={cn(
-        'border max-h-full h-full flex flex-col overflow-hidden justify-center items-center',
+        'border max-h-full h-full flex flex-col overflow-hidden justify-center items-center rounded-sm',
         size ?? KeySize.STANDARD,
         pressed && 'bg-gray-100'
       )}

@@ -43,10 +43,9 @@ export default function TextTracker({ text, highlight, fails }: Tracker) {
   return (
     <div
       className={cn(
-        'flex flex-wrap justify-start select-none',
+        'flex w-full flex-wrap justify-start select-none text-xl lg:text-2xl xl:text-3xl',
         robotoMono.className
       )}
-      style={{ containerType: 'normal', fontSize: '1.5cqw' }}
     >
       {wordComponents}
     </div>
@@ -117,10 +116,10 @@ function Letter({
 
 function Space({ complete, fail }: { complete: boolean; fail: boolean }) {
   return (
-    <div className="flex size-full w-[0.8cqw] items-center justify-center pt-[0.2cqw]">
+    <div className="flex size-full w-4 items-center justify-center pt-1">
       <div
         className={cn(
-          'size-[0.3cqw] rounded-full',
+          'size-[4px] lg:size-[5px] xl:size-[6px] rounded-full',
           complete ? 'bg-gray-300' : 'bg-black',
           fail && complete && 'bg-red-500'
         )}

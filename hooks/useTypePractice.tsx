@@ -4,7 +4,7 @@ import { generatePracticeText } from '@/lib/practice-text';
 import { Tracker } from '@/types/tracker.types';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
-export const createUseTextPractice = () => {
+export const createUseTypePractice = () => {
   let started: Date | null = null;
 
   return (): {
@@ -13,20 +13,29 @@ export const createUseTextPractice = () => {
     onPress: (key: string) => void;
     restart: (generate?: boolean) => void;
   } => {
-    const [practiceText, setPracticeText] = useState(generatePracticeText());
+    const [practiceText, setPracticeText] = useState('');
     const [text, setText] = useState('');
     const [fails, setFails] = useState(new Set<number>());
     const [wpm, setWpm] = useState<number | null>(null);
+
+    useEffect(() => {
+      setPracticeText(generatePracticeText());
+    }, []);
 
     const firstWord = useMemo(() => practiceText.split(' ')[0], [practiceText]);
 
     const onPress = useCallback(
       (key: string) => {
+        if (practiceText.length === 0) {
+          return;
+        }
+
         if (practiceText[text.length] === key) {
           if (!started) {
             started = new Date();
           }
-          return setText((text) => text + key);
+          setText((text) => text + key);
+          return;
         }
 
         setFails((fails) => new Set(fails).add(text.length));
@@ -45,14 +54,13 @@ export const createUseTextPractice = () => {
     );
 
     useEffect(() => {
-      if (text.length !== practiceText.length) {
-        return;
+      if (practiceText.length > 0 && text.length === practiceText.length) {
+        restart(true);
       }
-      restart(true);
     }, [text, practiceText, restart]);
 
     useEffect(() => {
-      if (text.length === 0 || !started) {
+      if (practiceText.length === 0 || text.length === 0 || !started) {
         return;
       }
 
@@ -64,7 +72,7 @@ export const createUseTextPractice = () => {
       const ms = new Date().getTime() - started.getTime();
       const wpm = (words.length / ms) * 1000 * 60;
       setWpm(Math.round(wpm));
-    }, [text, firstWord]);
+    }, [practiceText, text, firstWord]);
 
     return {
       tracker: {
