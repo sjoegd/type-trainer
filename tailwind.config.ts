@@ -7,6 +7,7 @@ const config = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
+    './types/**/*.{ts,tsx}',
 	],
   prefix: "",
   theme: {
@@ -72,6 +73,15 @@ const config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      gridTemplateColumns: {
+        '60': 'repeat(60, minmax(0, 1fr))',
+      },
+      gridColumn: {
+        'span-36': 'span 36 / span 36',
+      },
+      transitionProperty: {
+        'border': 'border'
+      }
     },
   },
   plugins: [require("tailwindcss-animate")],

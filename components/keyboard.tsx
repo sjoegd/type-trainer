@@ -1,7 +1,8 @@
-import { type KeyProps, KeySize } from '@/types/keyboard.types';
-import { useKeyboard } from '@/hooks/useKeyboard';
 import { createKeyboardLayout } from '@/lib/keyboard';
+import { KeyProps, KeySize } from '@/types/keyboard.types';
+import { AspectRatio } from './ui/aspect-ratio';
 import { cn } from '@/lib/cn';
+import { useKeyboard } from '@/hooks/useKeyboard';
 
 const layout = createKeyboardLayout();
 
@@ -15,51 +16,55 @@ export default function Keyboard({
   const pressed = useKeyboard(layout, onPress, preventDefaultKeys);
 
   return (
-    <div className="flex w-fit select-none flex-col gap-1 rounded-md border p-4 text-base capitalize">
-      {layout.map((row, i) => (
-        <KeyRow key={i}>
-          {row.map((key, j) => (
-            <Key
-              {...key}
-              key={key.p_key + j}
-              pressed={
-                pressed[key.p_key] ||
-                (key.p_key2 && pressed[key.p_key2]) ||
-                false
-              }
-            />
-          ))}
-        </KeyRow>
-      ))}
-    </div>
+    <AspectRatio ratio={3 / 1}>
+      <div
+        className="grid size-full grid-rows-5 rounded-md border text-base capitalize"
+        style={{ containerType: 'inline-size', padding: '1cqw', gap: '0.5cqw' }}
+      >
+        {layout.map((row, i) => (
+          <KeyRow key={i}>
+            {row.map((key, j) => (
+              <Key
+                {...key}
+                key={key.key1 + j}
+                pressed={
+                  pressed[key.key1] || (key.key2 && pressed[key.key2]) || false
+                }
+              />
+            ))}
+          </KeyRow>
+        ))}
+      </div>
+    </AspectRatio>
   );
 }
 
 function KeyRow({ children }: { children?: React.ReactNode }) {
-  return <div className="flex h-12 gap-1">{children}</div>;
+  return (
+    <div className="row-span-1 grid grid-cols-60" style={{ gap: '0.5cqw' }}>
+      {children}
+    </div>
+  );
 }
 
 function Key({
-  p_key: key,
-  p_key2: key2,
+  key1,
+  key2,
   label,
   size,
-  grow,
   pressed,
 }: KeyProps & { pressed: boolean }) {
   return (
     <div
       className={cn(
-        'flex flex-col h-full shrink-0 items-center justify-center border',
-        grow && 'grow',
+        'border max-h-full h-full flex flex-col overflow-hidden justify-center items-center',
+        size ?? KeySize.STANDARD,
         pressed && 'bg-gray-100'
       )}
-      style={{
-        width: size ?? KeySize.STANDARD,
-      }}
+      style={{ fontSize: '1.8cqw', lineHeight: '0', gap: '2cqw' }}
     >
-      {key2 && <span>{key2}</span>}
-      <span>{label ?? key}</span>
+      {key2 && <p className="size-fit">{key2}</p>}
+      <p className="size-fit">{label ?? key1}</p>
     </div>
   );
 }

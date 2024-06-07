@@ -17,7 +17,6 @@ export const useKeyboard = (
       if (!(keys.includes(e.key) || keys.includes(e.key.toLowerCase()))) {
         return;
       }
-
       onPress?.(e.key);
       e.preventDefault();
     };
@@ -38,7 +37,9 @@ export const useKeyboard = (
 
     const onKeyUp = (e: KeyboardEvent) => {
       const key = e.key.toLowerCase();
-      if (!keys.includes(key)) return;
+      if (!keys.includes(key)) {
+        return;
+      }
       setPressed((prev) => ({ ...prev, [key]: false }));
     };
 
@@ -51,7 +52,7 @@ export const useKeyboard = (
       window.removeEventListener('keydown', onKeyDown);
       window.removeEventListener('keyup', onKeyUp);
     };
-  }, [keys, onPress]);
+  }, [keys, onPress, preventDefaultKeys]);
 
   return pressed;
 };
