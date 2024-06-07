@@ -46,7 +46,7 @@ export default function InfoDialog() {
         </DialogHeader>
         <DialogFooter className="space-x-1 sm:space-x-1">
           <span>Created by</span>
-          <Link className="font-medium" href="https://github.com/sjoegd">
+          <Link className="font-medium" href="https://github.com/sjoegd/type-trainer">
             Sjoegd
           </Link>
         </DialogFooter>
