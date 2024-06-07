@@ -34,6 +34,7 @@ export const createUseTypePractice = () => {
           if (!started) {
             started = new Date();
           }
+
           setText((text) => text + key);
           return;
         }

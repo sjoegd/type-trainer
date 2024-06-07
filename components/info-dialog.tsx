@@ -21,7 +21,6 @@ export default function InfoDialog() {
           <DialogDescription>
             Type Trainer is a tool created using Next.js to help you improve
             your typing speed.
-            <br />
           </DialogDescription>
           <DialogTitle className="border-b text-2xl font-medium">
             How to use
@@ -36,7 +35,7 @@ export default function InfoDialog() {
                 to restart the text.
               </span>
               <span className="flex gap-1">
-                <div className="w-fit rounded-md border px-[6.5px]">
+                <div className="mr-[2px] w-fit rounded-md border px-[7px]">
                   <ChevronRight />
                 </div>
                 to skip to the next text.
