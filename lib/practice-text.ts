@@ -1,5 +1,3 @@
-'use client';
-
 import words from '@/public/words.json'
 
 export function generatePracticeText() {

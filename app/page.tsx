@@ -1,5 +1,6 @@
 'use client';
 
+import InfoDialog from '@/components/info-dialog';
 import Keyboard from '@/components/keyboard';
 import TextTracker from '@/components/text-tracker';
 import { Button } from '@/components/ui/button';
@@ -32,9 +33,14 @@ export default function Home() {
           <div className="flex w-full items-center  text-lg">
             <p className="text-lg">WPM: {wpm}</p>
             <div className="ml-auto">
-              <Button variant="ghost" className='px-1' onClick={() => restart(true)}>
+              <Button
+                variant="ghost"
+                className="p-1"
+                onClick={() => restart(true)}
+              >
                 <ChevronsRight className="size-8" />
               </Button>
+              <InfoDialog />
             </div>
           </div>
           <TextTracker {...tracker} />

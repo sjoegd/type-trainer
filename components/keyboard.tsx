@@ -18,7 +18,7 @@ export default function Keyboard({
   return (
     <AspectRatio ratio={3 / 1}>
       <div
-        className="grid size-full select-none grid-rows-5 rounded-md border text-base capitalize"
+        className="grid size-full select-none grid-rows-5 rounded-md border text-base capitalize shadow-lg"
         style={{ containerType: 'inline-size', padding: '1cqw', gap: '0.4cqw' }}
       >
         {layout.map((row, i) => (
@@ -57,7 +57,7 @@ function Key({
   return (
     <div
       className={cn(
-        'border max-h-full h-full flex flex-col overflow-hidden justify-center items-center rounded-sm',
+        'border max-h-full h-full flex flex-col overflow-hidden justify-center items-center rounded-sm shadow-sm',
         size ?? KeySize.STANDARD,
         pressed && 'bg-gray-100'
       )}
