@@ -5,6 +5,12 @@ import { maxTextLength, useSettingsStore } from '@/hooks/useSettingsStore';
 import { generatePracticeText } from '@/lib/generation';
 import { useMemo } from 'react';
 
+const preGeneratedText = generatePracticeText({
+  textLength: maxTextLength,
+  addCapitals: false,
+  addPunctuation: false,
+});
+
 export default function TextGenerationPreview() {
   const { addCapitals, addPunctuation, textLength } = useSettingsStore(
     (state) => state.generation
@@ -12,6 +18,7 @@ export default function TextGenerationPreview() {
 
   const totalText = useMemo(() => {
     return generatePracticeText({
+      previousText: preGeneratedText,
       textLength: maxTextLength,
       addCapitals,
       addPunctuation,

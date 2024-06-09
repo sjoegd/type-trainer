@@ -10,11 +10,11 @@ export function generatePracticeText({
   textLength,
   addCapitals,
   addPunctuation,
-}: GenerationSettings) {
-  const text = [];
-  for (let i = 0; i < textLength; i++) {
-    let word = words[Math.floor(Math.random() * words.length)];
+  previousText,
+}: GenerationSettings & { previousText?: string }) {
+  const words = generateWords(textLength, previousText);
 
+  const updatedWords = words.map((word) => {
     if (addCapitals && Math.random() < capitalChance) {
       word = word.charAt(0).toUpperCase() + word.slice(1);
     }
@@ -23,7 +23,16 @@ export function generatePracticeText({
       word += punctations[Math.floor(Math.random() * punctations.length)];
     }
 
-    text.push(word);
-  }
-  return text.join(' ');
+    return word;
+  });
+
+  return updatedWords.join(' ');
+}
+
+function generateWords(amount: number, previousText?: string) {
+  return previousText
+    ? previousText.split(' ').slice(0, amount)
+    : Array.from({ length: amount }).map(
+        () => words[Math.floor(Math.random() * words.length)]
+      );
 }
