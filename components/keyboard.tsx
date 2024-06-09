@@ -59,7 +59,7 @@ function Key({
       className={cn(
         'border max-h-full h-full flex flex-col overflow-hidden justify-center items-center rounded-sm shadow-sm shadow-border',
         size ?? KeySize.STANDARD,
-        pressed && 'bg-gray-100'
+        pressed && 'bg-pressed',
       )}
       style={{ fontSize: '1.8cqw', lineHeight: '0', gap: '2cqw' }}
     >

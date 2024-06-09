@@ -26,6 +26,7 @@ const config = {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         complete: 'hsl(var(--complete))',
+        pressed: 'hsl(var(--pressed))',
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',
