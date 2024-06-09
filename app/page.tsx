@@ -45,7 +45,7 @@ export default function Home() {
           </div>
           <TextTracker {...tracker} />
         </div>
-        <div className="pl-4 pr-10">
+        <div className="px-8">
           <Keyboard
             onPress={onPress}
             preventDefaultKeys={['tab', 'enter', 'alt']}
