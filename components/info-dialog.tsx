@@ -14,7 +14,7 @@ export default function InfoDialog() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="ghost" className="p-1" onClick={() => {}}>
+        <Button variant="ghost" size="icon">
           <InfoIcon className="size-8" />
         </Button>
       </DialogTrigger>
@@ -32,15 +32,13 @@ export default function InfoDialog() {
           </DialogTitle>
           <DialogDescription>
             When you&apos;re ready, press any key to start typing.
-            <div className="space-y-1">
-              <span className="flex gap-1">
-                <div className="w-fit rounded-md border px-1 text-base">
-                  ESC
-                </div>
+            <div className="mt-1 space-y-[6px]">
+              <span className="flex items-center gap-1">
+                <div className="w-fit rounded-md border p-1 text-base">ESC</div>
                 to restart the text.
               </span>
-              <span className="flex gap-1">
-                <div className="mr-[2px] w-fit rounded-md border px-[7px]">
+              <span className="flex items-center gap-1">
+                <div className="mr-[2px] w-fit rounded-md border px-[7px] py-1">
                   <ChevronRight />
                 </div>
                 to skip to the next text.

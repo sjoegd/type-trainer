@@ -104,9 +104,9 @@ function Letter({
     <div
       className={cn(
         'box-border border-b border-transparent',
-        highlight && 'border-black',
-        complete && 'text-gray-300',
-        fail && complete && 'text-red-500'
+        highlight && 'border-foreground',
+        complete && 'text-complete',
+        fail && complete && 'text-destructive'
       )}
     >
       {isSpace ? <Space complete={complete} fail={fail} /> : letter}
@@ -120,8 +120,8 @@ function Space({ complete, fail }: { complete: boolean; fail: boolean }) {
       <div
         className={cn(
           'size-[4px] lg:size-[5px] xl:size-[6px] rounded-full',
-          complete ? 'bg-gray-300' : 'bg-black',
-          fail && complete && 'bg-red-500'
+          complete ? 'bg-complete' : 'bg-foreground',
+          fail && complete && 'bg-destructive'
         )}
       />
     </div>

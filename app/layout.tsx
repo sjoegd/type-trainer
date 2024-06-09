@@ -2,6 +2,7 @@ import '@/styles/globals.css';
 
 import { inter } from '@/lib/fonts';
 import { cn } from '@/lib/cn';
+import { ThemeProvider } from '@/components/theme-provider';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -23,7 +24,14 @@ export default function RootLayout({
           inter.className
         )}
       >
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
