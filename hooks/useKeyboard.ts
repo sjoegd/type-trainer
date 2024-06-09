@@ -13,10 +13,9 @@ export const useKeyboard = (
   const [pressed, setPressed] = useState(getKeyboardKeyMap(keys));
 
   useEffect(() => {
-
     const onBlur = () => {
       setPressed(getKeyboardKeyMap(keys));
-    }
+    };
 
     const onKeyPress = (e: KeyboardEvent) => {
       if (!(keys.includes(e.key) || keys.includes(e.key.toLowerCase()))) {

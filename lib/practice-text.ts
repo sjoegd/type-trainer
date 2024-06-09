@@ -1,4 +1,4 @@
-import words from '@/public/words.json'
+import words from '@/public/words.json';
 
 export function generatePracticeText() {
   const text = [];

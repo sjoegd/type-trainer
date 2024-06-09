@@ -1,11 +1,16 @@
-import { ChevronRight, InfoIcon } from "lucide-react";
-import { Button } from "./ui/button";
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTrigger } from "./ui/dialog";
-import { DialogDescription, DialogTitle } from "@radix-ui/react-dialog";
-import Link from "next/link";
+import { ChevronRight, InfoIcon } from 'lucide-react';
+import { Button } from './ui/button';
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTrigger,
+} from './ui/dialog';
+import { DialogDescription, DialogTitle } from '@radix-ui/react-dialog';
+import Link from 'next/link';
 
 export default function InfoDialog() {
-
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -45,12 +50,14 @@ export default function InfoDialog() {
         </DialogHeader>
         <DialogFooter className="space-x-1 sm:space-x-1">
           <span>Created by</span>
-          <Link className="font-medium" href="https://github.com/sjoegd/type-trainer">
+          <Link
+            className="font-medium"
+            href="https://github.com/sjoegd/type-trainer"
+          >
             Sjoegd
           </Link>
         </DialogFooter>
       </DialogContent>
     </Dialog>
   );
-
 }

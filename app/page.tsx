@@ -21,8 +21,8 @@ export default function Home() {
       },
       {
         key: 'ArrowRight',
-        action: () => restart(true)
-      }
+        action: () => restart(true),
+      },
     ],
   });
 
@@ -30,7 +30,7 @@ export default function Home() {
     <main className="flex h-full p-8">
       <div className="m-auto min-w-[768px] max-w-5xl space-y-16">
         <div className="space-y-12">
-          <div className="flex w-full items-center  text-lg">
+          <div className="flex w-full items-center text-lg">
             <p className="text-lg">WPM: {wpm}</p>
             <div className="ml-auto">
               <Button

@@ -20,7 +20,7 @@ export default function RootLayout({
       <body
         className={cn(
           'h-screen bg-background font-inter antialiased',
-          inter.className,
+          inter.className
         )}
       >
         {children}
