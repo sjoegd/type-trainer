@@ -36,24 +36,22 @@ export default function Home() {
 
   return (
     <main className="flex h-full p-8">
-      <div className="m-auto min-w-[768px] max-w-5xl space-y-16">
-        <div className="space-y-12">
-          <div className="flex w-full text-lg">
-            <StatsTracker {...statsInfo} />
-            <div className="ml-auto flex h-fit items-center gap-[2px]">
-              <Button variant="ghost" size="icon" onClick={() => backward()}>
-                <ChevronsLeft className="size-8" />
-              </Button>
-              <Button variant="ghost" size="icon" onClick={() => forward()}>
-                <ChevronsRight className="size-8" />
-              </Button>
-              <ThemeToggle />
-              <InfoDialog />
-              <SettingsDialog />
-            </div>
+      <div className="m-auto min-w-[768px] max-w-5xl space-y-12">
+        <div className="flex w-full text-lg">
+          <StatsTracker {...statsInfo} />
+          <div className="ml-auto flex h-fit items-center gap-[2px]">
+            <Button variant="ghost" size="icon" onClick={() => backward()}>
+              <ChevronsLeft className="size-8" />
+            </Button>
+            <Button variant="ghost" size="icon" onClick={() => forward()}>
+              <ChevronsRight className="size-8" />
+            </Button>
+            <ThemeToggle />
+            <InfoDialog />
+            <SettingsDialog />
           </div>
-          <TextTracker {...textInfo} />
         </div>
+        <TextTracker {...textInfo} />
         <div className="px-8">
           <Keyboard
             onPress={onPress}

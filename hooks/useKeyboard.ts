@@ -13,6 +13,12 @@ export const useKeyboard = (
   const [pressed, setPressed] = useState(getKeyboardKeyMap(keys));
 
   useEffect(() => {
+    const focusBody = () => {
+      if (document.activeElement !== document.body) {
+        (document.activeElement as HTMLElement).blur?.();
+      }
+    };
+
     const onBlur = () => {
       setPressed(getKeyboardKeyMap(keys));
     };
@@ -36,6 +42,7 @@ export const useKeyboard = (
         return;
       }
 
+      focusBody();
       setPressed((prev) => ({ ...prev, [key]: true }));
     };
 

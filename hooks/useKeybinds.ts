@@ -7,6 +7,10 @@ export const useKeybinds = ({
 }) => {
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
+      if (document.activeElement !== document.body) {
+        return;
+      }
+
       for (const { key, action } of keybinds) {
         if (e.key === key) {
           action();
