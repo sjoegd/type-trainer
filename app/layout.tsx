@@ -7,7 +7,8 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Type Trainer',
-  description: 'Train your typing skills.',
+  description:
+    'A tool created using Next.js to help you improve your typing speed.',
 };
 
 export default function RootLayout({
