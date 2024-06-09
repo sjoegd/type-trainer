@@ -2,7 +2,7 @@ import '@/styles/globals.css';
 
 import { inter } from '@/lib/fonts';
 import { cn } from '@/lib/cn';
-import { ThemeProvider } from '@/components/theme-provider';
+import { ThemeProvider } from '@/components/theme/theme-provider';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {

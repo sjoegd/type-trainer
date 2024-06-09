@@ -1,11 +1,18 @@
 'use client';
 
+import { useSettingsStore } from '@/hooks/useSettingsStore';
 import { cn } from '@/lib/cn';
 import { robotoMono } from '@/lib/fonts';
-import { Tracker } from '@/types/tracker.types';
+import { getCursorStyling, getSpaceStyling } from '@/lib/settings';
+import { SpaceStyle } from '@/types/settings.types';
+import { TextTrackerInfo } from '@/types/tracker.types';
 import { useMemo } from 'react';
 
-export default function TextTracker({ text, highlight, fails }: Tracker) {
+export default function TextTracker({
+  text,
+  highlight,
+  fails,
+}: TextTrackerInfo) {
   const words = useMemo(() => text.split(' '), [text]);
 
   const { words: wordComponents } = useMemo(() => {
@@ -43,7 +50,7 @@ export default function TextTracker({ text, highlight, fails }: Tracker) {
   return (
     <div
       className={cn(
-        'flex w-full flex-wrap justify-start select-none text-xl lg:text-2xl xl:text-3xl',
+        'flex max-w-full h-fit flex-wrap justify-start select-none text-xl lg:text-2xl xl:text-3xl',
         robotoMono.className
       )}
     >
@@ -99,31 +106,42 @@ function Letter({
   complete: boolean;
   fail: boolean;
 }) {
+  const cursorStyle = useSettingsStore((state) => state.appearance.cursorStyle);
   const isSpace = letter === ' ';
+
+  const styling = useMemo(() => {
+    return cn(
+      'border-transparent box-border border',
+      highlight && 'border-foreground',
+      getCursorStyling(cursorStyle),
+      complete && 'text-complete',
+      fail && complete && 'text-destructive'
+    );
+  }, [cursorStyle, highlight, complete, fail]);
+
   return (
-    <div
-      className={cn(
-        'box-border border-b border-transparent',
-        highlight && 'border-foreground',
-        complete && 'text-complete',
-        fail && complete && 'text-destructive'
-      )}
-    >
+    <div className={styling}>
       {isSpace ? <Space complete={complete} fail={fail} /> : letter}
     </div>
   );
 }
 
 function Space({ complete, fail }: { complete: boolean; fail: boolean }) {
+  const spaceStyle = useSettingsStore((state) => state.appearance.spaceStyle);
+
+  const styling = useMemo(() => {
+    return cn(
+      complete ? 'bg-complete' : 'bg-foreground',
+      fail && complete && 'bg-destructive',
+      getSpaceStyling(spaceStyle)
+    );
+  }, [complete, fail, spaceStyle]);
+
   return (
-    <div className="flex size-full w-4 items-center justify-center pt-1">
-      <div
-        className={cn(
-          'size-[4px] lg:size-[5px] xl:size-[6px] rounded-full',
-          complete ? 'bg-complete' : 'bg-foreground',
-          fail && complete && 'bg-destructive'
-        )}
-      />
+    <div className='flex h-full justify-center pb-1 pt-2'>
+      <div className='flex w-4'>
+        <div className={styling} />
+      </div>
     </div>
   );
 }
